@@ -4,7 +4,9 @@
   <img src="../pickles.svg" alt="Pickles eating noodles, with a speech bubble saying nom nom and a faded reflection" width="512">
 </p>
 
-Pickles is a panda mascot for unscheduled maintenance, with a speech bubble and a faded reflection. The artwork is designed for transparent placement on light and dark backgrounds.
+Pickles is a panda mascot for maintenance and error pages. The image is a visual pun on **“Please bear with us”**: a bear accompanies a request for patience while a site is unavailable.
+
+The transparent artwork includes a speech bubble and a faded reflection, and works on light and dark backgrounds.
 
 `pickles.ai` is the editable Adobe Illustrator master. `pickles.svg` is the portable vector export and the source for all bitmap renders. After editing the master, export the updated SVG before regenerating the bitmaps.
 
@@ -32,10 +34,6 @@ npm --prefix tools run render
 Commit the updated SVG and generated `renders/` files together when regenerating locally.
 
 The **Render bitmaps** GitHub Action runs on the default branch when the SVG, renderer, dependency files or workflow change, and can also be run manually on that branch. It provides a downloadable artifact and commits changed renders back to the branch. The workflow needs GitHub Actions to be enabled, and default-branch rules must allow its generated-file commits. If those commits are blocked, the downloadable artifact is still available.
-
-## Local working files
-
-`work/` holds local editing scripts, intermediate images, earlier exports and backups. It is visible in Finder and ignored by Git, along with installed dependencies and Finder files. Keep new experiments in that folder; only the current master, SVG, published renders and export tooling belong in the repository.
 
 ## Licence
 
