@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Please bear with us</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --background: #faf9f6;
+        --text: #242424;
+        --muted: #5b5b58;
+        --accent: #9b3035;
+        --accent-hover: #7d2529;
+        --button-text: #ffffff;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 100%;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --background: #18181b;
+          --text: #f4f4f2;
+          --muted: #b8b8b3;
+          --accent: #f1a3a5;
+          --accent-hover: #f7bfc0;
+          --button-text: #261416;
+        }
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100svh;
+        display: grid;
+        align-items: center;
+        padding: 1.5rem;
+        padding: max(1.5rem, env(safe-area-inset-top))
+          max(1.5rem, env(safe-area-inset-right))
+          max(1.5rem, env(safe-area-inset-bottom))
+          max(1.5rem, env(safe-area-inset-left));
+        background: var(--background);
+        color: var(--text);
+        line-height: 1.6;
+        overflow-wrap: break-word;
+      }
+
+      main {
+        width: 100%;
+        max-width: 64rem;
+        margin-inline: auto;
+        display: grid;
+        gap: 1.5rem;
+        align-items: center;
+        text-align: center;
+      }
+
+      .illustration {
+        display: block;
+        width: 100%;
+        max-width: 22rem;
+        height: auto;
+        margin-inline: auto;
+      }
+
+      .message {
+        min-width: 0;
+      }
+
+      h1 {
+        margin: 0 0 1rem;
+        font-size: 2rem;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        line-height: 1.12;
+        letter-spacing: -0.035em;
+        text-wrap: balance;
+      }
+
+      p {
+        max-width: 36rem;
+        margin: 0 auto 1rem;
+        color: var(--muted);
+      }
+
+      .intro {
+        color: var(--text);
+        font-size: 1.125rem;
+      }
+
+      .retry {
+        display: inline-flex;
+        min-height: 3rem;
+        align-items: center;
+        justify-content: center;
+        margin: 0.5rem 0 1.25rem;
+        padding: 0.75rem 1.5rem;
+        border: 2px solid transparent;
+        border-radius: 0.75rem;
+        background: var(--accent);
+        color: var(--button-text);
+        font-weight: 650;
+        text-decoration: none;
+      }
+
+      .retry:hover {
+        background: var(--accent-hover);
+      }
+
+      .retry:focus-visible {
+        outline: 3px solid var(--text);
+        outline-offset: 4px;
+      }
+
+      .help {
+        margin-bottom: 0;
+        font-size: 0.9375rem;
+      }
+
+      @media (min-width: 56rem) {
+        body {
+          padding: 3rem;
+        }
+
+        main {
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+          gap: 3rem;
+          text-align: left;
+        }
+
+        .illustration {
+          max-width: 28rem;
+        }
+
+        p {
+          margin-inline: 0;
+        }
+      }
+
+      @media (forced-colors: active) {
+        .retry {
+          border-color: ButtonText;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main aria-labelledby="page-title">
+      <img class="illustration" src="pickles.svg" width="286" height="311"
+        alt="Pickles the panda eating noodles, with a speech bubble saying nom nom">
+      <div class="message">
+        <h1 id="page-title">Please bear with us</h1>
+        <p class="intro">Something went wrong.</p>
+        <p>Pickles has made a bit of a mess. Please try again in a little while.</p>
+        <a class="retry" href="" aria-label="Reload this page">Try again</a>
+        <p class="help">If the problem continues, please contact the site owner.</p>
+      </div>
+    </main>
+  </body>
+</html>

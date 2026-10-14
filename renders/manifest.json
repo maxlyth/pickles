@@ -1,0 +1,23 @@
+{
+  "source": "pickles.svg",
+  "sourceSha256": "0ea9aec79092d104dee06f66f2896a5607b673cfe26d4fcbcead0adf7c9b0591",
+  "transparent": true,
+  "sizes": [
+    {
+      "width": 256,
+      "height": 279
+    },
+    {
+      "width": 512,
+      "height": 558
+    },
+    {
+      "width": 1024,
+      "height": 1115
+    },
+    {
+      "width": 2048,
+      "height": 2230
+    }
+  ]
+}

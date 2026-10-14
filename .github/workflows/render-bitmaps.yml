@@ -1,0 +1,63 @@
+name: Render bitmaps
+
+on:
+  push:
+    paths:
+      - pickles.svg
+      - tools/render.mjs
+      - tools/package.json
+      - tools/package-lock.json
+      - .github/workflows/render-bitmaps.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: render-bitmaps-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render:
+    # Only the default branch can publish generated-file commits.
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - name: Check out artwork
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: tools/package-lock.json
+
+      - name: Install export tools
+        run: npm --prefix tools ci
+
+      - name: Render transparent images
+        run: npm --prefix tools run render
+
+      - name: Upload bitmap downloads
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: pickles-bitmaps
+          path: renders/
+          if-no-files-found: error
+
+      - name: Commit updated bitmap exports
+        env:
+          TARGET_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          git add -- renders/
+          if git diff --cached --quiet; then
+            echo "Bitmap exports are already current."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Update bitmap exports'
+          git push origin "HEAD:refs/heads/$TARGET_BRANCH"

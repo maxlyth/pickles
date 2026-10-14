@@ -1,0 +1,14 @@
+# Local drafts, previews, backups and editing scripts
+/work/
+/backups/
+
+# Installed export dependencies and local caches
+node_modules/
+.npm/
+*.log
+
+# Finder and editor temporary files
+.DS_Store
+._*
+*.swp
+*~
